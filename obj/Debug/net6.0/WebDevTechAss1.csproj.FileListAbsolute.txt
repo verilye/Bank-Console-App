@@ -1,0 +1,15 @@
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.csproj.AssemblyReference.cache
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.AssemblyInfoInputs.cache
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.AssemblyInfo.cs
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.csproj.CoreCompileInputs.cache
+C:\Users\conno\Desktop\WebDevTechAss1\bin\Debug\net6.0\WebDevTechAss1.exe
+C:\Users\conno\Desktop\WebDevTechAss1\bin\Debug\net6.0\WebDevTechAss1.deps.json
+C:\Users\conno\Desktop\WebDevTechAss1\bin\Debug\net6.0\WebDevTechAss1.runtimeconfig.json
+C:\Users\conno\Desktop\WebDevTechAss1\bin\Debug\net6.0\WebDevTechAss1.dll
+C:\Users\conno\Desktop\WebDevTechAss1\bin\Debug\net6.0\WebDevTechAss1.pdb
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.dll
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\refint\WebDevTechAss1.dll
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.pdb
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\WebDevTechAss1.genruntimeconfig.cache
+C:\Users\conno\Desktop\WebDevTechAss1\obj\Debug\net6.0\ref\WebDevTechAss1.dll
