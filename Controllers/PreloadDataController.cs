@@ -10,7 +10,7 @@ namespace WebDevTechAss1.Controllers
     {
         static readonly HttpClient client = new HttpClient();
 
-        static async Task PreloadData()
+        public async Task PreloadData()
         {
             try
             {

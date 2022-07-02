@@ -6,35 +6,19 @@ namespace WebDevTechAss1
     public class Program
     {
 
-        
-        static readonly HttpClient client = new HttpClient();
+        static readonly PreloadDataController client = new PreloadDataController();
 
         static async Task Main(string[] args)
         {
 
-            // For testing purposes,
-            // spitting out info from web service here
+            // Check Database for user entries
 
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync("https://coreteaching01.csit.rmit.edu.au/~e103884/wdt/services/customers/");
-                response.EnsureSuccessStatusCode();
 
-                string responseBody = await response.Content.ReadAsStringAsync();
+            // Preload user data if entries not found and load into database
 
-                Console.WriteLine(responseBody);
-
-            }
-            catch(HttpRequestException e)
-            {
-                    Console.WriteLine("\nException Caught!");	
-                    Console.WriteLine("Message :{0} ",e.Message);
-                    
-            }
+            await client.PreloadData();
                
-            // User user = new User();
-
-            // user.name = "Connor";
+            
 
             // //Main menu ui 
 
