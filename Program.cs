@@ -1,5 +1,7 @@
-﻿using WebDevTechAss1.Controllers;
+﻿using System.Configuration;
+using WebDevTechAss1.Controllers;
 using WebDevTechAss1.Models;
+
 
 namespace WebDevTechAss1
 {
@@ -7,39 +9,37 @@ namespace WebDevTechAss1
     {
 
         static readonly PreloadDataController client = new PreloadDataController();
+        static readonly CustomerController customer = new CustomerController();
 
         static async Task Main(string[] args)
         {
 
             // Check Database for user entries
 
+            await customer.addCustomer();
+
 
             // Preload user data if entries not found and load into database
 
-            await client.PreloadData();
+            //await client.PreloadData();
 
-            while(true)
-            {
+            // while(true)
+            // {
 
-                // //Main menu ui 
+            //     // //Main menu ui 
 
-                //Console.WriteLine("--- "+ user.name +" ---");
-                Console.WriteLine("[1] Deposit");
-                Console.WriteLine("[2] Withdraw");
-                Console.WriteLine("[3] Transfer");
-                Console.WriteLine("[4] My Statement");
-                Console.WriteLine("[5] Logout");
-                Console.WriteLine("[6] Exit");
-                Console.WriteLine("\n");
-                Console.WriteLine("Enter an option:");
+            //     //Console.WriteLine("--- "+ user.name +" ---");
+            //     Console.WriteLine("[1] Deposit");
+            //     Console.WriteLine("[2] Withdraw");
+            //     Console.WriteLine("[3] Transfer");
+            //     Console.WriteLine("[4] My Statement");
+            //     Console.WriteLine("[5] Logout");
+            //     Console.WriteLine("[6] Exit");
+            //     Console.WriteLine("\n");
+            //     Console.WriteLine("Enter an option:");
 
-            }
-
-            
-               
-            
-
-           
+            // }
+    
         }
     }
 }

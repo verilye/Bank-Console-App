@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace WebDevTechAss1.Controllers
 {
@@ -28,6 +30,16 @@ namespace WebDevTechAss1.Controllers
                 Console.WriteLine("Message :{0} ",e.Message);
                 
            }
+        }
+
+        public static void DbConnect()
+        {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
         }
         
     }
