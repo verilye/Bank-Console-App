@@ -16,10 +16,12 @@ namespace WebDevTechAss1
 
             // Check Database for user entries
 
-            await customer.addCustomer();
+            customer.checkDb();
 
 
             // Preload user data if entries not found and load into database
+
+            //await customer.addCustomer();
 
             //await client.PreloadData();
 

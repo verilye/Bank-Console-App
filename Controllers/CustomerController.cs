@@ -14,11 +14,41 @@ namespace WebDevTechAss1.Controllers
     public class CustomerController
     {
 
+        //Extract connection string from appsettings.json
+
         private static IConfigurationRoot Configuration { get; } =
                 new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
             private static string ConnectionString { get; } = Configuration["ConnectionString"];
 
+
+
+        //Check if any customer entries are in the database
+
+        public Boolean checkDb()
+        {
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand(
+                "SELECT COUNT(*) FROM dbo.Customer",
+                connection);
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if(reader.HasRows){
+                
+                Console.WriteLine("BING BONG");
+
+                return true;}
+
+            return false;
+
+        }
+
+
+        //Pull users from webservice and add them to database if no customers are present
 
         public async Task addCustomer()
         {
