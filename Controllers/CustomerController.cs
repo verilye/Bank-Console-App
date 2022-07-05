@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
-using System.Data;
 using Microsoft.Extensions.Configuration;
 using WebDevTechAss1.Models;
 using Newtonsoft.Json;
@@ -14,43 +13,9 @@ namespace WebDevTechAss1.Controllers
 {
     public class CustomerController
     {
-
-        //Extract connection string from appsettings.json
-
-        private static IConfigurationRoot Configuration { get; } =
-                new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-        private static string ConnectionString { get; } = Configuration["ConnectionString"];
-
     
         static readonly HttpClient client = new HttpClient();
-
-
-
-        //Check if any customer entries are in the database
-
-        public Boolean checkDb()
-        {
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-
-            SqlCommand command = new SqlCommand(
-                "SELECT COUNT(*) FROM dbo.Customer",
-                connection);
-            connection.Open();
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            if(reader.HasRows){
-                
-                Console.WriteLine("BING BONG");
-
-                return false;}
-
-            return true;
-
-        }
-
+        static readonly DatabaseController db = new DatabaseController();
 
         //Pull users from webservice and add them to database if no customers are present
 
@@ -68,27 +33,23 @@ namespace WebDevTechAss1.Controllers
 
                 foreach(var customer in customers)
                 {
-                    Console.WriteLine(customer.Name);
+
+                    db.InsertCustomer(customer);
+                    db.InsertLogin(customer.Login, customer.CustomerID);
+
+                    for(int i = 0; i<customer.Accounts.Length;i++)
+                    {
+                        db.InsertAccount(customer.Accounts[i]);
+
+                        for(int j = 0; j<customer.Accounts[i].Transactions.Length;j++)
+                        {
+                            db.InsertTransaction(customer.Accounts[i].Transactions[j], 'D', customer.Accounts[i].AccountNumber,0);
+                        }
+                    }            
                 }
+
+                Console.WriteLine("Data preloaded to database!");
         
-                // SqlConnection connection = new SqlConnection(ConnectionString);
-                // connection.Open();
-
-                // var cmd = connection.CreateCommand();
-
-                // cmd.Connection = connection;
-
-                // cmd.CommandType = CommandType.Text;
-
-                // cmd.CommandText = "insert into dbo.Customer (CustomerID, Name, Address, City, PostCode) values (@customerID,@name,@address,@city,@postCode)";
-
-                // cmd.Parameters.AddWithValue("customerID", acc.CustomerID);
-                // cmd.Parameters.AddWithValue("name", acc.Name);
-                // cmd.Parameters.AddWithValue("address", acc.Address);
-                // cmd.Parameters.AddWithValue("city ", acc.City);
-                // cmd.Parameters.AddWithValue("postCode ", acc.PostCode);
-                
-                // cmd.ExecuteNonQuery();
 
             }
             catch(HttpRequestException e)
