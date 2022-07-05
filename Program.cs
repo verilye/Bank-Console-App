@@ -7,23 +7,28 @@ namespace WebDevTechAss1
 {
     public class Program
     {
-
-        static readonly PreloadDataController client = new PreloadDataController();
         static readonly CustomerController customer = new CustomerController();
 
         static async Task Main(string[] args)
         {
 
-            // Check Database for user entries
+            // Check Database for user entries and if entries
+            // exist, do not populate using the webservice
 
-            customer.checkDb();
+            if(customer.checkDb()){
+
+                // Preload user data if entries not found and load into database
+                await customer.PreloadData();
+                
+            }
 
 
-            // Preload user data if entries not found and load into database
+           
 
-            //await customer.addCustomer();
+            
 
-            //await client.PreloadData();
+
+            //Menu
 
             // while(true)
             // {

@@ -8,7 +8,6 @@ namespace WebDevTechAss1.Controllers
 {
     public class MainMenuController
     {
-        public readonly PreloadDataController preload = new PreloadDataController();
 
         public MainMenuController()
         {
