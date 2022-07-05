@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Configuration;
 using WebDevTechAss1.Models;
+using Newtonsoft.Json;
 
 namespace WebDevTechAss1.Controllers
 {
@@ -63,26 +64,31 @@ namespace WebDevTechAss1.Controllers
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                Customer acc = new Customer(1,"Connor","My House","My City","4000");
+                var customers = JsonConvert.DeserializeObject<List<Customer>>(responseBody);
+
+                foreach(var customer in customers)
+                {
+                    Console.WriteLine(customer.Name);
+                }
         
-                SqlConnection connection = new SqlConnection(ConnectionString);
-                connection.Open();
+                // SqlConnection connection = new SqlConnection(ConnectionString);
+                // connection.Open();
 
-                var cmd = connection.CreateCommand();
+                // var cmd = connection.CreateCommand();
 
-                cmd.Connection = connection;
+                // cmd.Connection = connection;
 
-                cmd.CommandType = CommandType.Text;
+                // cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "insert into dbo.Customer (CustomerID, Name, Address, City, PostCode) values (@customerID,@name,@address,@city,@postCode)";
+                // cmd.CommandText = "insert into dbo.Customer (CustomerID, Name, Address, City, PostCode) values (@customerID,@name,@address,@city,@postCode)";
 
-                cmd.Parameters.AddWithValue("customerID", acc.CustomerID);
-                cmd.Parameters.AddWithValue("name", acc.Name);
-                cmd.Parameters.AddWithValue("address", acc.Address);
-                cmd.Parameters.AddWithValue("city ", acc.City);
-                cmd.Parameters.AddWithValue("postCode ", acc.PostCode);
+                // cmd.Parameters.AddWithValue("customerID", acc.CustomerID);
+                // cmd.Parameters.AddWithValue("name", acc.Name);
+                // cmd.Parameters.AddWithValue("address", acc.Address);
+                // cmd.Parameters.AddWithValue("city ", acc.City);
+                // cmd.Parameters.AddWithValue("postCode ", acc.PostCode);
                 
-                cmd.ExecuteNonQuery();
+                // cmd.ExecuteNonQuery();
 
             }
             catch(HttpRequestException e)

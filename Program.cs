@@ -15,12 +15,12 @@ namespace WebDevTechAss1
             // Check Database for user entries and if entries
             // exist, do not populate using the webservice
 
-            if(customer.checkDb()){
+            // if(customer.checkDb()){
 
                 // Preload user data if entries not found and load into database
                 await customer.PreloadData();
-                
-            }
+
+            // }
 
 
            

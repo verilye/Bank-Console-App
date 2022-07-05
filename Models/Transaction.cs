@@ -7,22 +7,13 @@ namespace WebDevTechAss1.Models
 {
     public class Transaction
     {
-        public int TransactionID { get; }
-        public string TransactionType { get; }
-        public int AccountNumber { get; }
-        public int DestinationAccountNumber { get; }
-        public int Amount { get; }
-        public string Comment { get; }
-        public string TransactionTimeUtc { get; }
+        public string Amount { get;set; }
+        public string Comment { get;set; }
+        public string TransactionTimeUtc { get;set; }
 
-        public Transaction(int transactionID, string transactionType, int accountNumber,
-            int destinationAccountNumber, int  amount, string comment, string transactionTimeUtc)
+        public Transaction(string amount, string comment, string transactionTimeUtc)
         {
 
-            TransactionID = transactionID;
-            TransactionType = transactionType;
-            AccountNumber = accountNumber;
-            DestinationAccountNumber = destinationAccountNumber;
             Amount = amount;
             Comment = comment;
             TransactionTimeUtc = transactionTimeUtc;

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "in44dnS+WnAeu5HCLYB6ByFsecR8poiDxaUOG8Re+rL7f9aduwsoYRfiItq7F3T3lUwuSAkouEpdYGbfGEMYJA==",
+  "dgSpecHash": "jQn02MhgCYE8Ib8B+znfn6D+ThCTku2qiPrM2WCK+zdAwu81VqcSGEKHpSpakJlAQj8asEP7Vlfjfuwh298Wgg==",
   "success": true,
   "projectFilePath": "C:\\Users\\conno\\Desktop\\WebDevTechAss1\\WebDevTechAss1.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
