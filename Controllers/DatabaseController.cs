@@ -39,9 +39,9 @@ namespace WebDevTechAss1.Controllers
 
             if(reader.HasRows){
                 
-                Console.WriteLine("BING BONG");
-
-                return false;}
+                return false;
+                
+            }
 
             return true;
 
