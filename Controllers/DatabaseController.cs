@@ -46,6 +46,43 @@ namespace WebDevTechAss1.Controllers
             return true;
 
         }
+
+        public int GetAccountNumber(int customerID, char accountType)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand(
+                "SELECT AccountNumber FROM [Account] WHERE CustomerID = @customerID AND AccountType = @accountType",
+                connection);
+            connection.Open();
+
+            command.Parameters.AddWithValue("customerID", customerID);
+            command.Parameters.AddWithValue("accountType", accountType);
+
+            int accountNumber = (int)command.ExecuteScalar();
+
+            return accountNumber;
+            
+        }
+
+        // Helper method to get customer ID from username
+
+        public int GetCustomerID(string username)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand(
+                "SELECT CustomerID FROM dbo.Login WHERE LoginID = @username ",
+                connection);
+            connection.Open();
+
+            command.Parameters.AddWithValue("username", username);
+
+            int customerID = (int)command.ExecuteScalar();
+
+            return customerID;
+        }
+
         
         //Compare entered password to hashed password on the database
 
@@ -141,6 +178,7 @@ namespace WebDevTechAss1.Controllers
         
         public void InsertTransaction(Transaction transaction, char transactionType, int accountNumber, int destinationAccountNumber)
         {
+
 
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();

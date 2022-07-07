@@ -1,3 +1,4 @@
+using WebDevTechAss1.Models;
 using SimpleHashing;
 
 namespace WebDevTechAss1.Controllers
@@ -10,37 +11,62 @@ namespace WebDevTechAss1.Controllers
         public Boolean Login(string username, string password)
         {            
 
-            //Query database for username and resulting password hash
+                //Query database for username and resulting password hash
 
 
-            string hash = db.VerifyLogin(username);
+                string hash = db.VerifyLogin(username);
+
+                if(hash == null)
+                {
+                    return false;
+                }
 
 
-            //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
-            
-            bool isPasswordValid = PBKDF2.Verify(hash,password);
+                //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
+                
+                bool isPasswordValid = PBKDF2.Verify(hash,password);
 
 
-            return isPasswordValid;
+                return isPasswordValid;
+           
+        }
+
+
+        //Deposit money to an account
+
+        public void Deposit(int customerID)
+        {
+            Console.Clear();
+            Console.WriteLine("--- Deposit Money ---");
+
+            Console.WriteLine("Enter the amount you would like to deposit:");
+
+            string amount = Console.ReadLine();
+
+            DateTime time = DateTime.Now;
+
+            Transaction deposit = new Transaction(amount, null, time.ToString());
+
+
+            int account = db.GetAccountNumber(customerID, 'S');
+
+            db.InsertTransaction(deposit, 'D', account, 0);
+
+            Console.WriteLine("Money deposited");
 
         }
 
-        public async Task Deposit()
+        public void Withdraw()
         {
 
         }
 
-        public async Task Withdraw()
+        public  void Transfer()
         {
 
         }
 
-        public async Task Transfer()
-        {
-
-        }
-
-        public async Task MyStatement()
+        public void MyStatement()
         {
 
         }
