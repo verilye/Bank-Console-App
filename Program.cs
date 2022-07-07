@@ -14,8 +14,14 @@ namespace WebDevTechAss1
 
         static async Task Main(string[] args)
         {
-            
             Console.Clear();
+            LoginUI();
+    
+        }
+    
+    
+        static void LoginUI()
+        {
 
             //First the user needs to login
 
@@ -51,16 +57,13 @@ namespace WebDevTechAss1
                     password += p.KeyChar;
                     Console.Write("*");
 
-                }
-
-                Console.WriteLine("\n" + username + " " + password);
-                
+                }                
 
                 Boolean attempt = menu.Login(username, password);
 
                 if(attempt)
                 {
-                    loggingIn = false;
+                    MenuUI();
                 }
                 
                 Console.Clear();
@@ -69,7 +72,10 @@ namespace WebDevTechAss1
                 
             }
 
+        }
 
+        static async Task MenuUI()
+        {
             // Check Database for user entries and if entries
             // exist, do not populate using the webservice
 
@@ -87,7 +93,7 @@ namespace WebDevTechAss1
             {
                 Console.Clear();
                 
-                 //Console.WriteLine("--- "+ user.name +" ---");
+                Console.WriteLine("--- MCBA Banking Application ---");
                 Console.WriteLine("[1] Deposit");
                 Console.WriteLine("[2] Withdraw");
                 Console.WriteLine("[3] Transfer");
@@ -124,7 +130,7 @@ namespace WebDevTechAss1
                     case "5":
                         Console.Clear();
                         Console.WriteLine("Logging out...");
-                        await menu.Logout();
+                        LoginUI();
                         break;
 
                     case "6":
@@ -134,10 +140,10 @@ namespace WebDevTechAss1
                         break;
 
                 }
-
-
             }
-    
+
+
+
         }
     }
 }
