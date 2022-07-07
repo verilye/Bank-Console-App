@@ -46,6 +46,9 @@ namespace WebDevTechAss1.Controllers
             return true;
 
         }
+        
+        // Get number of account so that amounts of money can be transferred to
+        // and from it
 
         public int GetAccountNumber(int customerID, char accountType)
         {
@@ -64,6 +67,43 @@ namespace WebDevTechAss1.Controllers
             return accountNumber;
             
         }
+
+        //
+        public void UpdateAccountBalance(int accountNumber, int amount)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command1 = new SqlCommand(
+                "SELECT Balance FROM [Account] WHERE AccountNumber = @accountNumber",
+                connection);
+            connection.Open();
+
+            command1.Parameters.AddWithValue("accountNumber", accountNumber);
+
+            int balance = (int)command1.ExecuteScalar();
+
+            if(amount + balance <= 0 )
+            {
+                Console.WriteLine("You do not have enough money for this transfer");
+            }
+            else
+            {
+                var newBalance = amount+balance;
+
+                SqlCommand command2 = new SqlCommand(
+                "UPDATE Balance FROM [Account] WHERE AccountNumber = @accountNumber",
+                connection);
+                connection.Open();
+
+                command2.Parameters.AddWithValue("accountNumber", accountNumber);
+
+                command2.ExecuteNonQuery();
+
+                Console.WriteLine("Transfer successful!");
+
+            }
+        }
+
 
         // Helper method to get customer ID from username
 

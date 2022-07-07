@@ -51,9 +51,9 @@ namespace WebDevTechAss1.Controllers
             int account = db.GetAccountNumber(customerID, 'S');
 
             db.InsertTransaction(deposit, 'D', account, 0);
+            db.UpdateAccountBalance(account, Int32.Parse(amount));
 
-            Console.WriteLine("Money deposited");
-
+        
         }
 
         public void Withdraw()

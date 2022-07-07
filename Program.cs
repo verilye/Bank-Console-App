@@ -95,7 +95,6 @@ namespace WebDevTechAss1
 
         static async Task MenuUI(int customerID)
         {
-
            // Then display the menu loop and allow users to selct 
            // options from it 
 
