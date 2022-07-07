@@ -20,12 +20,15 @@ namespace WebDevTechAss1
         }
     
     
-        static void LoginUI()
+        static async Task LoginUI()
         {
 
             //First the user needs to login
+            //If successful they will be redirected to the main menu
 
             Boolean loggingIn = true;
+
+            string id = null;
 
             while(loggingIn)
             {
@@ -63,7 +66,8 @@ namespace WebDevTechAss1
 
                 if(attempt)
                 {
-                    MenuUI();
+                    id = username;
+                    loggingIn = false;
                 }
                 
                 Console.Clear();
@@ -72,26 +76,34 @@ namespace WebDevTechAss1
                 
             }
 
-        }
-
-        static async Task MenuUI()
-        {
+            Console.Clear();
             // Check Database for user entries and if entries
             // exist, do not populate using the webservice
 
             if(db.checkDb()){
-               
+            
                 await customer.PreloadData();
 
             }
 
+            
+            int customerID = db.GetCustomerID(id);
+
+            await MenuUI(customerID);
+
+        }
+
+        static async Task MenuUI(int customerID)
+        {
 
            // Then display the menu loop and allow users to selct 
            // options from it 
 
-            while(true)
+           // Refer to MainMenuController for implementaions of all these
+           // menu functions
+            Boolean morbing = true;
+            while(morbing)
             {
-                Console.Clear();
                 
                 Console.WriteLine("--- MCBA Banking Application ---");
                 Console.WriteLine("[1] Deposit");
@@ -108,28 +120,29 @@ namespace WebDevTechAss1
                 switch(input)
                 {
                     case "1":
-                        Console.Clear();
-                        await menu.Deposit();
+                       
+                        menu.Deposit(customerID);
                         break;
                     
                     case "2":
-                        Console.Clear();
-                        await menu.Withdraw();
+                       
+                        menu.Withdraw();
                         break;
 
                     case "3":
-                        Console.Clear();
-                        await menu.Transfer();
+                        
+                        menu.Transfer();
                         break;
 
                     case "4":
-                        Console.Clear();
-                        await menu.MyStatement();
+                        
+                        menu.MyStatement();
                         break;
 
                     case "5":
                         Console.Clear();
                         Console.WriteLine("Logging out...");
+                        morbing = false;
                         LoginUI();
                         break;
 
@@ -140,6 +153,7 @@ namespace WebDevTechAss1
                         break;
 
                 }
+               
             }
 
 
