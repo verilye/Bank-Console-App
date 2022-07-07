@@ -12,6 +12,8 @@
           "Microsoft.Extensions.Configuration": "6.0.1",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",
           "Newtonsoft.Json": "13.0.1",
+          "SimpleHashing": "2.0.0.1",
+          "SimpleHashing.Net": "2.1.0",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Net.Http": "4.3.4"
         },
@@ -372,6 +374,22 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
+      "SimpleHashing/2.0.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/SimpleHashing.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "SimpleHashing.Net/2.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/SimpleHashing.Net.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
       "System.Buffers/4.5.1": {},
       "System.Collections/4.3.0": {
         "dependencies": {
@@ -1135,6 +1153,20 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
+    },
+    "SimpleHashing/2.0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+THp+FuTQ+bML8BvupOsbmvEosj99tOXB+WopEF8DqIuhkw2lrkuvpY3PGJDIXw/rxj9vvcP/caKyjFAyE5w2w==",
+      "path": "simplehashing/2.0.0.1",
+      "hashPath": "simplehashing.2.0.0.1.nupkg.sha512"
+    },
+    "SimpleHashing.Net/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mx9W9YjQxEP8Lma/RVbDsS0dHKV5lEb3vldWdxgvD4o625To0XtxWroNcDR8cPdtANgTTo9QKjryZzHDjbonhg==",
+      "path": "simplehashing.net/2.1.0",
+      "hashPath": "simplehashing.net.2.1.0.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

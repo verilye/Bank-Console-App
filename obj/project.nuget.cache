@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jQn02MhgCYE8Ib8B+znfn6D+ThCTku2qiPrM2WCK+zdAwu81VqcSGEKHpSpakJlAQj8asEP7Vlfjfuwh298Wgg==",
+  "dgSpecHash": "D4iwMBv25V9clQnUHOZXlFg/zVNK3uOxnsCJXOUAbpoj+bGJJaPETr2S+FwqgnCRAKhhk5tSCz54iEJ+TmhodQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\conno\\Desktop\\WebDevTechAss1\\WebDevTechAss1.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,8 @@
     "C:\\Users\\conno\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\simplehashing\\2.0.0.1\\simplehashing.2.0.0.1.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\simplehashing.net\\2.1.0\\simplehashing.net.2.1.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",

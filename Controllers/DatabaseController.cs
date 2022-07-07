@@ -39,11 +39,30 @@ namespace WebDevTechAss1.Controllers
 
             if(reader.HasRows){
                 
-                Console.WriteLine("BING BONG");
-
-                return false;}
+                return false;
+                
+            }
 
             return true;
+
+        }
+        
+        //Compare entered password to hashed password on the database
+
+        public string VerifyLogin(string username)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand(
+                "SELECT PasswordHash FROM dbo.Login WHERE LoginID = @username ",
+                connection);
+            connection.Open();
+
+            command.Parameters.AddWithValue("username", username);
+
+            string password = (string)command.ExecuteScalar();
+
+            return password;
 
         }
 

@@ -1,20 +1,57 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebDevTechAss1.Controllers;
+using SimpleHashing;
 
 namespace WebDevTechAss1.Controllers
 {
     public class MainMenuController
     {
 
-        public MainMenuController()
-        {
-            
+        static readonly DatabaseController db = new DatabaseController();
 
-           
+        public Boolean Login(string username, string password)
+        {            
+
+            //Query database for username and resulting password hash
+
+
+            string hash = db.VerifyLogin(username);
+
+            Console.WriteLine(hash);
+
+
+            //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
+            
+            bool isPasswordValid = PBKDF2.Verify(hash,password);
+
+
+            return isPasswordValid;
+
         }
+
+        public async Task Deposit()
+        {
+
+        }
+
+        public async Task Withdraw()
+        {
+
+        }
+
+        public async Task Transfer()
+        {
+
+        }
+
+        public async Task MyStatement()
+        {
+
+        }
+
+        public async Task Logout()
+        {
+
+        }
+
         
     }
 }
