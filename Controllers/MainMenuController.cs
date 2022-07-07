@@ -15,8 +15,6 @@ namespace WebDevTechAss1.Controllers
 
             string hash = db.VerifyLogin(username);
 
-            Console.WriteLine(hash);
-
 
             //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
             
@@ -43,11 +41,6 @@ namespace WebDevTechAss1.Controllers
         }
 
         public async Task MyStatement()
-        {
-
-        }
-
-        public async Task Logout()
         {
 
         }
