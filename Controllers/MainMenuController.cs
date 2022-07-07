@@ -43,6 +43,9 @@ namespace WebDevTechAss1.Controllers
 
             string amount = Console.ReadLine();
 
+            Console.WriteLine("Deposit to your Credit or Savings account? (Enter 'C' or 'S')");
+
+            char type = (char)Console.Read();
 
 
             DateTime time = DateTime.Now;
@@ -52,15 +55,38 @@ namespace WebDevTechAss1.Controllers
 
             int account = db.GetAccountNumber(customerID, 'S');
 
-            db.InsertTransaction(deposit, 'D', account, 0);
+            db.InsertTransaction(deposit, type, account, 0);
             db.UpdateAccountBalance(account, Int32.Parse(amount));
 
         
         }
 
-        public void Withdraw()
+        public void Withdraw(int customerID)
         {
+            Console.Clear();
+            Console.WriteLine("--- Withdraw Money ---");
 
+            Console.WriteLine("Enter the amount you would like to withdraw:");
+
+            string amount = Console.ReadLine();
+
+            Console.WriteLine("Withdraw from your Credit or Savings account? (Enter 'C' or 'S')");
+
+            char type = (char)Console.Read();
+
+
+            DateTime time = DateTime.Now;
+
+            Transaction withdraw = new Transaction(Convert.ToDecimal(amount), null, time.ToString());
+
+
+            int account = db.GetAccountNumber(customerID, 'S');
+
+            db.InsertTransaction(withdraw, type, account, 0);
+
+            int a = Int32.Parse(amount);
+            int negatize = a*2;
+            db.UpdateAccountBalance(account, a-negatize);
         }
 
         public  void Transfer()

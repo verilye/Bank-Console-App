@@ -125,7 +125,7 @@ namespace WebDevTechAss1
                     
                     case "2":
                        
-                        menu.Withdraw();
+                        menu.Withdraw(customerID);
                         break;
 
                     case "3":
