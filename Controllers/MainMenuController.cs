@@ -43,9 +43,11 @@ namespace WebDevTechAss1.Controllers
 
             string amount = Console.ReadLine();
 
+
+
             DateTime time = DateTime.Now;
 
-            Transaction deposit = new Transaction(amount, null, time.ToString());
+            Transaction deposit = new Transaction(Convert.ToDecimal(amount), null, time.ToString());
 
 
             int account = db.GetAccountNumber(customerID, 'S');

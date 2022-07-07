@@ -69,39 +69,52 @@ namespace WebDevTechAss1.Controllers
         }
 
         //
-        public void UpdateAccountBalance(int accountNumber, int amount)
-        {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-
-            SqlCommand command1 = new SqlCommand(
-                "SELECT Balance FROM [Account] WHERE AccountNumber = @accountNumber",
-                connection);
-            connection.Open();
-
-            command1.Parameters.AddWithValue("accountNumber", accountNumber);
-
-            int balance = (int)command1.ExecuteScalar();
-
-            if(amount + balance <= 0 )
+        public void UpdateAccountBalance(int accountNumber, decimal amount)
+        {   
+            try
             {
-                Console.WriteLine("You do not have enough money for this transfer");
-            }
-            else
-            {
-                var newBalance = amount+balance;
+            
+                SqlConnection connection = new SqlConnection(ConnectionString);
 
-                SqlCommand command2 = new SqlCommand(
-                "UPDATE Balance FROM [Account] WHERE AccountNumber = @accountNumber",
-                connection);
+                SqlCommand command1 = new SqlCommand(
+                    "SELECT Balance FROM [Account] WHERE AccountNumber = @accountNumber",
+                    connection);
                 connection.Open();
 
-                command2.Parameters.AddWithValue("accountNumber", accountNumber);
+                command1.Parameters.AddWithValue("accountNumber", accountNumber);
 
-                command2.ExecuteNonQuery();
+                decimal balance = (decimal)command1.ExecuteScalar();
 
-                Console.WriteLine("Transfer successful!");
+                connection.Close();
 
+                if(amount + balance <= 0 )
+                {
+                    Console.WriteLine("You do not have enough money for this transfer");
+                }
+                else
+                {
+                    var newBalance = amount+balance;
+
+                    SqlCommand command2 = new SqlCommand(
+                    "UPDATE [Account] SET Balance = @newBalance WHERE AccountNumber = @accountNumber",
+                    connection);
+                    connection.Open();
+                    
+                    command2.Parameters.AddWithValue("newBalance", newBalance);
+                    command2.Parameters.AddWithValue("accountNumber", accountNumber);
+
+                    command2.ExecuteNonQuery();
+
+                    Console.WriteLine("Transfer successful!");
+
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            
         }
 
 

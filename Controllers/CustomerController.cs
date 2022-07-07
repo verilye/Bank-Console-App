@@ -44,6 +44,7 @@ namespace WebDevTechAss1.Controllers
                         for(int j = 0; j<customer.Accounts[i].Transactions.Length;j++)
                         {
                             db.InsertTransaction(customer.Accounts[i].Transactions[j], 'D', customer.Accounts[i].AccountNumber,0);
+                            db.UpdateAccountBalance(customer.Accounts[i].AccountNumber, customer.Accounts[i].Transactions[j].Amount);
                         }
                     }            
                 }
