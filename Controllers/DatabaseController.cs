@@ -87,7 +87,7 @@ namespace WebDevTechAss1.Controllers
 
                 connection.Close();
 
-                if(amount + balance <= 0 )
+                if(amount + balance < 0 )
                 {
                     Console.WriteLine("You do not have enough money for this transfer");
                 }

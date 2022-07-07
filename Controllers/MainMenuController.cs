@@ -55,7 +55,7 @@ namespace WebDevTechAss1.Controllers
 
             int account = db.GetAccountNumber(customerID, 'S');
 
-            db.InsertTransaction(deposit, type, account, 0);
+            db.InsertTransaction(deposit, 'D', account, 0);
             db.UpdateAccountBalance(account, Int32.Parse(amount));
 
         
@@ -77,21 +77,80 @@ namespace WebDevTechAss1.Controllers
 
             DateTime time = DateTime.Now;
 
-            Transaction withdraw = new Transaction(Convert.ToDecimal(amount), null, time.ToString());
-
-
-            int account = db.GetAccountNumber(customerID, 'S');
-
-            db.InsertTransaction(withdraw, type, account, 0);
+            int account = db.GetAccountNumber(customerID, type);
 
             int a = Int32.Parse(amount);
             int negatize = a*2;
             db.UpdateAccountBalance(account, a-negatize);
+
+            Transaction withdraw = new Transaction(Convert.ToDecimal(a), null, time.ToString());
+
+            db.InsertTransaction(withdraw, 'W', account, 0);
+
+           
         }
 
-        public  void Transfer()
+
+
+        //Handles transfers to any other account in the system
+
+        public  void Transfer(int customerID)
         {
 
+
+            try
+            {
+                //Gather information
+
+                Console.Clear();
+                Console.WriteLine("--- Transfer Money ---");
+
+                Console.WriteLine("Would you like to transfer money from your Checking or Savings account ('C' or 'S')");
+
+                string acc = Console.ReadLine();
+
+                Console.WriteLine("Enter the account number you would like to transfer to");
+
+                string dest = Console.ReadLine();
+
+                Console.WriteLine("Enter the amount you would like to transfer:");
+
+                string amount = Console.ReadLine();
+
+                Console.WriteLine("Add comment:");
+
+                string comment = Console.ReadLine();
+
+
+                DateTime time = DateTime.Now;
+
+                Transaction transfer = new Transaction(Convert.ToDecimal(amount), comment, time.ToString());
+
+                //Check to see if user has enough balance for transaction
+
+                //Insert Transaction for both accounts;
+
+                //Change balance for destination account
+
+                //Change balance for account being debited
+
+
+                int account = db.GetAccountNumber(customerID, 'S');
+
+                int a = Int32.Parse(amount);
+                int negatize = a*2;
+
+                db.UpdateAccountBalance(account, a-negatize);
+                db.UpdateAccountBalance(Int32.Parse(dest), a);
+
+                db.InsertTransaction(transfer, 'T', account,Int32.Parse(dest));
+                db.InsertTransaction(transfer, 'T', Int32.Parse(dest),  Int32.Parse(dest));
+
+            }
+             catch (Exception e)
+            {
+                Console.WriteLine("Invalid input");
+            }
         }
 
         public void MyStatement()
