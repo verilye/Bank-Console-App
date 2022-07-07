@@ -14,14 +14,15 @@ namespace WebDevTechAss1
 
         static async Task Main(string[] args)
         {
+            
+            Console.Clear();
 
             //First the user needs to login
 
+            Boolean loggingIn = true;
 
-            while(true)
+            while(loggingIn)
             {
-                
-                Console.Clear();
 
                 Console.Write("Enter Login ID:" );
 
@@ -55,10 +56,17 @@ namespace WebDevTechAss1
                 Console.WriteLine("\n" + username + " " + password);
                 
 
-                System.Console.ReadLine();
+                Boolean attempt = menu.Login(username, password);
 
+                if(attempt)
+                {
+                    loggingIn = false;
+                }
+                
+                Console.Clear();
 
-
+                Console.WriteLine("Username or password incorrect, please try again");
+                
             }
 
 

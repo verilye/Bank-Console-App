@@ -46,6 +46,25 @@ namespace WebDevTechAss1.Controllers
             return true;
 
         }
+        
+        //Compare entered password to hashed password on the database
+
+        public string VerifyLogin(string username)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand(
+                "SELECT PasswordHash FROM dbo.Login WHERE LoginID = @username ",
+                connection);
+            connection.Open();
+
+            command.Parameters.AddWithValue("username", username);
+
+            string password = (string)command.ExecuteScalar();
+
+            return password;
+
+        }
 
         //Insert deserialised JSON into the SQL database with
         //these helper methods

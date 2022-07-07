@@ -535,6 +535,24 @@
           }
         }
       },
+      "SimpleHashing/2.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/SimpleHashing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SimpleHashing.dll": {}
+        }
+      },
+      "SimpleHashing.Net/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/SimpleHashing.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SimpleHashing.Net.dll": {}
+        }
+      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -2239,6 +2257,30 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SimpleHashing/2.0.0.1": {
+      "sha512": "+THp+FuTQ+bML8BvupOsbmvEosj99tOXB+WopEF8DqIuhkw2lrkuvpY3PGJDIXw/rxj9vvcP/caKyjFAyE5w2w==",
+      "type": "package",
+      "path": "simplehashing/2.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/SimpleHashing.dll",
+        "simplehashing.2.0.0.1.nupkg.sha512",
+        "simplehashing.nuspec"
+      ]
+    },
+    "SimpleHashing.Net/2.1.0": {
+      "sha512": "mx9W9YjQxEP8Lma/RVbDsS0dHKV5lEb3vldWdxgvD4o625To0XtxWroNcDR8cPdtANgTTo9QKjryZzHDjbonhg==",
+      "type": "package",
+      "path": "simplehashing.net/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/SimpleHashing.Net.dll",
+        "simplehashing.net.2.1.0.nupkg.sha512",
+        "simplehashing.net.nuspec"
       ]
     },
     "System.Buffers/4.5.1": {
@@ -4717,6 +4759,8 @@
       "Microsoft.Extensions.Configuration >= 6.0.1",
       "Microsoft.Extensions.Configuration.Json >= 6.0.0",
       "Newtonsoft.Json >= 13.0.1",
+      "SimpleHashing >= 2.0.0.1",
+      "SimpleHashing.Net >= 2.1.0",
       "System.Configuration.ConfigurationManager >= 6.0.0",
       "System.Net.Http >= 4.3.4"
     ]
@@ -4775,6 +4819,14 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "SimpleHashing": {
+            "target": "Package",
+            "version": "[2.0.0.1, )"
+          },
+          "SimpleHashing.Net": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",
