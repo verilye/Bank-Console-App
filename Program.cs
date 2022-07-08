@@ -91,6 +91,8 @@ namespace WebDevTechAss1
 
             await MenuUI(customerID);
 
+            
+
         }
 
         static async Task MenuUI(int customerID)
@@ -103,60 +105,62 @@ namespace WebDevTechAss1
             Boolean morbing = true;
             while(morbing)
             {
-                
-                Console.WriteLine("--- MCBA Banking Application ---");
-                Console.WriteLine("[1] Deposit");
-                Console.WriteLine("[2] Withdraw");
-                Console.WriteLine("[3] Transfer");
-                Console.WriteLine("[4] My Statement");
-                Console.WriteLine("[5] Logout");
-                Console.WriteLine("[6] Exit");
-                Console.WriteLine("\n");
-                Console.WriteLine("Enter an option:");
+                try{
 
-                string input = Console.ReadLine();
+                    Console.WriteLine("--- MCBA Banking Application ---");
+                    Console.WriteLine("[1] Deposit");
+                    Console.WriteLine("[2] Withdraw");
+                    Console.WriteLine("[3] Transfer");
+                    Console.WriteLine("[4] My Statement");
+                    Console.WriteLine("[5] Logout");
+                    Console.WriteLine("[6] Exit");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("Enter an option:");
 
-                switch(input)
-                {
-                    case "1":
-                       
-                        menu.Deposit(customerID);
-                        break;
-                    
-                    case "2":
-                       
-                        menu.Withdraw(customerID);
-                        break;
+                    string input = Console.ReadLine();
 
-                    case "3":
+                    switch(input)
+                    {
+                        case "1":
                         
-                        menu.Transfer(customerID);
-                        break;
-
-                    case "4":
+                            menu.Deposit(customerID);
+                            break;
                         
-                        menu.MyStatement();
-                        break;
+                        case "2":
+                        
+                            menu.Withdraw(customerID);
+                            break;
 
-                    case "5":
-                        Console.Clear();
-                        Console.WriteLine("Logging out...");
-                        morbing = false;
-                        LoginUI();
-                        break;
+                        case "3":
+                            
+                            menu.Transfer(customerID);
+                            break;
 
-                    case "6":
-                        Console.Clear();
-                        Console.WriteLine("Exiting program...");
-                        Environment.Exit(0);
-                        break;
+                        case "4":
+                            
+                            menu.MyStatement();
+                            break;
 
+                        case "5":
+                            Console.Clear();
+                            Console.WriteLine("Logging out...");
+                            morbing = false;
+                            LoginUI();
+                            break;
+
+                        case "6":
+                            Console.Clear();
+                            Console.WriteLine("Exiting program...");
+                            Environment.Exit(0);
+                            break;
+
+                    }
                 }
-               
+                catch(Exception)
+                {
+                    Console.WriteLine("Invalid input");
+                }
             }
-
-
-
         }
     }
 }
