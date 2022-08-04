@@ -7,9 +7,9 @@ namespace WebDevTechAss1.Models
 {
     public class Transaction
     {
-        public decimal Amount { get;set; }
-        public string Comment { get;set; }
-        public string TransactionTimeUtc { get;set; }
+        public decimal Amount { get; set; }
+        public string Comment { get; set; }
+        public string TransactionTimeUtc { get; set; }
 
         public Transaction(decimal amount, string comment, string transactionTimeUtc)
         {
@@ -17,7 +17,7 @@ namespace WebDevTechAss1.Models
             Amount = amount;
             Comment = comment;
             TransactionTimeUtc = transactionTimeUtc;
-    
+
         }
 
     }

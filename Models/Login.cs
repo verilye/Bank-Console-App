@@ -7,10 +7,10 @@ namespace WebDevTechAss1.Models
 {
     public class Login
     {
-        public string LoginID { get;set; }
-        public string PasswordHash { get;set; }
+        public string LoginID { get; set; }
+        public string PasswordHash { get; set; }
 
-        public Login(string loginID, string passwordHash )
+        public Login(string loginID, string passwordHash)
         {
             LoginID = loginID;
             PasswordHash = passwordHash;

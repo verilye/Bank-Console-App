@@ -10,16 +10,16 @@ namespace WebDevTechAss1
         static readonly CustomerController customer = new CustomerController();
         static readonly DatabaseController db = new DatabaseController();
         static readonly MainMenuController menu = new MainMenuController();
-        
+
 
         static async Task Main(string[] args)
         {
             Console.Clear();
             LoginUI();
-    
+
         }
-    
-    
+
+
         static async Task LoginUI()
         {
 
@@ -30,16 +30,16 @@ namespace WebDevTechAss1
 
             string id = null;
 
-            while(loggingIn)
+            while (loggingIn)
             {
 
-                Console.Write("Enter Login ID:" );
+                Console.Write("Enter Login ID:");
 
                 string username = null;
-                while(true)
+                while (true)
                 {
                     var u = System.Console.ReadKey();
-                    if(u.Key == ConsoleKey.Enter)
+                    if (u.Key == ConsoleKey.Enter)
                         break;
 
                     username += u.KeyChar;
@@ -47,65 +47,67 @@ namespace WebDevTechAss1
                 }
                 Console.Clear();
 
-                Console.WriteLine("Enter Login ID:" + username );
+                Console.WriteLine("Enter Login ID:" + username);
 
                 string password = null;
                 Console.Write("Enter Password:");
-                while(true)
+                while (true)
                 {
                     var p = System.Console.ReadKey(true);
-                    if(p.Key == ConsoleKey.Enter)
+                    if (p.Key == ConsoleKey.Enter)
                         break;
 
                     password += p.KeyChar;
                     Console.Write("*");
 
-                }                
+                }
 
                 Boolean attempt = menu.Login(username, password);
 
-                if(attempt)
+                if (attempt)
                 {
                     id = username;
                     loggingIn = false;
                 }
-                
+
                 Console.Clear();
 
                 Console.WriteLine("Username or password incorrect, please try again");
-                
+
             }
 
             Console.Clear();
             // Check Database for user entries and if entries
             // exist, do not populate using the webservice
 
-            if(db.checkDb()){
-            
+            if (db.checkDb())
+            {
+
                 await customer.PreloadData();
 
             }
 
-            
+
             int customerID = db.GetCustomerID(id);
 
             await MenuUI(customerID);
 
-            
+
 
         }
 
         static async Task MenuUI(int customerID)
         {
-           // Then display the menu loop and allow users to selct 
-           // options from it 
+            // Then display the menu loop and allow users to selct 
+            // options from it 
 
-           // Refer to MainMenuController for implementaions of all these
-           // menu functions
+            // Refer to MainMenuController for implementaions of all these
+            // menu functions
             Boolean morbing = true;
-            while(morbing)
+            while (morbing)
             {
-                try{
+                try
+                {
 
                     Console.WriteLine("--- MCBA Banking Application ---");
                     Console.WriteLine("[1] Deposit");
@@ -119,25 +121,25 @@ namespace WebDevTechAss1
 
                     string input = Console.ReadLine();
 
-                    switch(input)
+                    switch (input)
                     {
                         case "1":
-                        
+
                             menu.Deposit(customerID);
                             break;
-                        
+
                         case "2":
-                        
+
                             menu.Withdraw(customerID);
                             break;
 
                         case "3":
-                            
+
                             menu.Transfer(customerID);
                             break;
 
                         case "4":
-                            
+
                             menu.MyStatement();
                             break;
 
@@ -156,7 +158,7 @@ namespace WebDevTechAss1
 
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Console.WriteLine("Invalid input");
                 }

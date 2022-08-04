@@ -15,7 +15,7 @@ namespace WebDevTechAss1.Controllers
     public class DatabaseController
     {
 
-         //Extract connection string from appsettings.json
+        //Extract connection string from appsettings.json
 
         private static IConfigurationRoot Configuration { get; } =
                 new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -37,16 +37,17 @@ namespace WebDevTechAss1.Controllers
 
             SqlDataReader reader = command.ExecuteReader();
 
-            if(reader.HasRows){
-                
+            if (reader.HasRows)
+            {
+
                 return false;
-                
+
             }
 
             return true;
 
         }
-        
+
         // Get number of account so that amounts of money can be transferred to
         // and from it
 
@@ -65,15 +66,15 @@ namespace WebDevTechAss1.Controllers
             int accountNumber = (int)command.ExecuteScalar();
 
             return accountNumber;
-            
+
         }
 
         //
         public void UpdateAccountBalance(int accountNumber, decimal amount)
-        {   
+        {
             try
             {
-            
+
                 SqlConnection connection = new SqlConnection(ConnectionString);
 
                 SqlCommand command1 = new SqlCommand(
@@ -87,19 +88,19 @@ namespace WebDevTechAss1.Controllers
 
                 connection.Close();
 
-                if(amount + balance < 0 )
+                if (amount + balance < 0)
                 {
                     Console.WriteLine("You do not have enough money for this transfer");
                 }
                 else
                 {
-                    var newBalance = amount+balance;
+                    var newBalance = amount + balance;
 
                     SqlCommand command2 = new SqlCommand(
                     "UPDATE [Account] SET Balance = @newBalance WHERE AccountNumber = @accountNumber",
                     connection);
                     connection.Open();
-                    
+
                     command2.Parameters.AddWithValue("newBalance", newBalance);
                     command2.Parameters.AddWithValue("accountNumber", accountNumber);
 
@@ -114,7 +115,7 @@ namespace WebDevTechAss1.Controllers
                 Console.WriteLine(e);
             }
 
-            
+
         }
 
 
@@ -136,7 +137,7 @@ namespace WebDevTechAss1.Controllers
             return customerID;
         }
 
-        
+
         //Compare entered password to hashed password on the database
 
         public string VerifyLogin(string username)
@@ -178,7 +179,7 @@ namespace WebDevTechAss1.Controllers
             cmd.Parameters.AddWithValue("address", customer.Address ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("city ", customer.City ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("postCode ", customer.PostCode ?? (object)DBNull.Value);
-            
+
             cmd.ExecuteNonQuery();
 
         }
@@ -201,8 +202,8 @@ namespace WebDevTechAss1.Controllers
             cmd.Parameters.AddWithValue("accountType", account.AccountType);
             cmd.Parameters.AddWithValue("customerId", account.CustomerID);
             cmd.Parameters.AddWithValue("balance", account.Balance);
-            
-            
+
+
             cmd.ExecuteNonQuery();
 
         }
@@ -222,13 +223,13 @@ namespace WebDevTechAss1.Controllers
             cmd.CommandText = "insert into dbo.Login (LoginID,PasswordHash,CustomerID) values (@loginId, @passwordHash, @customerId)";
 
             cmd.Parameters.AddWithValue("loginId", login.LoginID);
-            cmd.Parameters.AddWithValue("passwordHash", login.PasswordHash); 
-            cmd.Parameters.AddWithValue("customerId", customerID); 
-            
+            cmd.Parameters.AddWithValue("passwordHash", login.PasswordHash);
+            cmd.Parameters.AddWithValue("customerId", customerID);
+
             cmd.ExecuteNonQuery();
 
         }
-        
+
         public void InsertTransaction(Transaction transaction, char transactionType, int accountNumber, int destinationAccountNumber)
         {
 
@@ -244,21 +245,22 @@ namespace WebDevTechAss1.Controllers
 
             cmd.CommandText = "insert into [Transaction] (TransactionType,AccountNumber,DestinationAccountNumber,Amount,Comment,TransactionTimeUtc) values (@transactionType, @accountNumber, @destinationAccountNumber, @amount, @comment, @transactionTimeUtc)";
 
-            cmd.Parameters.AddWithValue("transactionType", transactionType); 
-            cmd.Parameters.AddWithValue("accountNumber", accountNumber); 
+            cmd.Parameters.AddWithValue("transactionType", transactionType);
+            cmd.Parameters.AddWithValue("accountNumber", accountNumber);
 
-            if(destinationAccountNumber == 0)
+            if (destinationAccountNumber == 0)
             {
                 cmd.Parameters.AddWithValue("destinationAccountNumber", (object)DBNull.Value);
-            }else
+            }
+            else
             {
                 cmd.Parameters.AddWithValue("destinationAccountNumber", destinationAccountNumber);
             }
 
             cmd.Parameters.AddWithValue("amount", transaction.Amount);
-            cmd.Parameters.AddWithValue("comment", transaction.Comment ?? (object)DBNull.Value); 
-            cmd.Parameters.AddWithValue("transactionTimeUtc", transaction.TransactionTimeUtc); 
-            
+            cmd.Parameters.AddWithValue("comment", transaction.Comment ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("transactionTimeUtc", transaction.TransactionTimeUtc);
+
             cmd.ExecuteNonQuery();
 
         }

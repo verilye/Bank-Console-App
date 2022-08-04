@@ -9,26 +9,26 @@ namespace WebDevTechAss1.Controllers
         static readonly DatabaseController db = new DatabaseController();
 
         public Boolean Login(string username, string password)
-        {            
+        {
 
-                //Query database for username and resulting password hash
-
-
-                string hash = db.VerifyLogin(username);
-
-                if(hash == null)
-                {
-                    return false;
-                }
+            //Query database for username and resulting password hash
 
 
-                //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
-                
-                bool isPasswordValid = PBKDF2.Verify(hash,password);
+            string hash = db.VerifyLogin(username);
+
+            if (hash == null)
+            {
+                return false;
+            }
 
 
-                return isPasswordValid;
-           
+            //Use PBKDF2.Verify(passwordHash, password) to verify password is correct
+
+            bool isPasswordValid = PBKDF2.Verify(hash, password);
+
+
+            return isPasswordValid;
+
         }
 
 
@@ -58,7 +58,7 @@ namespace WebDevTechAss1.Controllers
             db.InsertTransaction(deposit, 'D', account, 0);
             db.UpdateAccountBalance(account, Int32.Parse(amount));
 
-        
+
         }
 
         public void Withdraw(int customerID)
@@ -80,21 +80,21 @@ namespace WebDevTechAss1.Controllers
             int account = db.GetAccountNumber(customerID, type);
 
             int a = Int32.Parse(amount);
-            int negatize = a*2;
-            db.UpdateAccountBalance(account, a-negatize);
+            int negatize = a * 2;
+            db.UpdateAccountBalance(account, a - negatize);
 
             Transaction withdraw = new Transaction(Convert.ToDecimal(a), null, time.ToString());
 
             db.InsertTransaction(withdraw, 'W', account, 0);
 
-           
+
         }
 
 
 
         //Handles transfers to any other account in the system
 
-        public  void Transfer(int customerID)
+        public void Transfer(int customerID)
         {
 
 
@@ -138,16 +138,16 @@ namespace WebDevTechAss1.Controllers
                 int account = db.GetAccountNumber(customerID, 'S');
 
                 int a = Int32.Parse(amount);
-                int negatize = a*2;
+                int negatize = a * 2;
 
-                db.UpdateAccountBalance(account, a-negatize);
+                db.UpdateAccountBalance(account, a - negatize);
                 db.UpdateAccountBalance(Int32.Parse(dest), a);
 
-                db.InsertTransaction(transfer, 'T', account,Int32.Parse(dest));
-                db.InsertTransaction(transfer, 'T', Int32.Parse(dest),  Int32.Parse(dest));
+                db.InsertTransaction(transfer, 'T', account, Int32.Parse(dest));
+                db.InsertTransaction(transfer, 'T', Int32.Parse(dest), Int32.Parse(dest));
 
             }
-             catch (Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Invalid input");
             }
@@ -158,6 +158,6 @@ namespace WebDevTechAss1.Controllers
 
         }
 
-        
+
     }
 }

@@ -11,9 +11,13 @@ using Newtonsoft.Json;
 
 namespace WebDevTechAss1.Controllers
 {
+
+
+    //THIS CLASS CONTROLS THE PRELOAD OF DATA INTO THE DATABASE
+
     public class CustomerController
     {
-    
+
         static readonly HttpClient client = new HttpClient();
         static readonly DatabaseController db = new DatabaseController();
 
@@ -31,38 +35,38 @@ namespace WebDevTechAss1.Controllers
 
                 var customers = JsonConvert.DeserializeObject<List<Customer>>(responseBody);
 
-                foreach(var customer in customers)
+                foreach (var customer in customers)
                 {
 
                     db.InsertCustomer(customer);
                     db.InsertLogin(customer.Login, customer.CustomerID);
 
-                    for(int i = 0; i<customer.Accounts.Length;i++)
+                    for (int i = 0; i < customer.Accounts.Length; i++)
                     {
                         db.InsertAccount(customer.Accounts[i]);
 
-                        for(int j = 0; j<customer.Accounts[i].Transactions.Length;j++)
+                        for (int j = 0; j < customer.Accounts[i].Transactions.Length; j++)
                         {
-                            db.InsertTransaction(customer.Accounts[i].Transactions[j], 'D', customer.Accounts[i].AccountNumber,0);
+                            db.InsertTransaction(customer.Accounts[i].Transactions[j], 'D', customer.Accounts[i].AccountNumber, 0);
                             db.UpdateAccountBalance(customer.Accounts[i].AccountNumber, customer.Accounts[i].Transactions[j].Amount);
                         }
-                    }            
+                    }
                 }
 
                 Console.WriteLine("Data preloaded to database!");
-        
+
 
             }
-            catch(HttpRequestException e)
+            catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");	
-                Console.WriteLine("Message :{0} ",e.Message);
-                
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+
             }
-            
+
         }
 
-        
+
 
     }
 }
